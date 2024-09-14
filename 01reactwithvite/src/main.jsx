@@ -36,6 +36,7 @@ const reactElement = React.createElement(
 createRoot(document.getElementById('root')).render(
 
   // <MyApp />
+  // MyApp()
   // anotherElement
   reactElement
   // <App />
