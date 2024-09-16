@@ -1,4 +1,4 @@
-import React, { useId } from 'react'
+import React, { useId } from 'react';
 
 function InputBox({
     label,
@@ -6,12 +6,12 @@ function InputBox({
     onAmountChange,
     onCurrencyChange,
     currencyOptions = [],
-    setCurrency = 'usd',
+    selectedCurrency = 'usd', // Changed name from setCurrency to selectedCurrency
     amountDisable = false,
-    currencyDisabel = false,
+    currencyDisable = false, // Fixed typo here
     className = "",
 }) {
-    //  Hook for generating unique IDs that can be passed to accessibility attributes.
+    // Hook for generating unique IDs that can be passed to accessibility attributes.
     const amountInputId = useId();
     return (
         <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
@@ -33,17 +33,15 @@ function InputBox({
                 <p className="text-black/40 mb-2 w-full">Currency Type</p>
                 <select
                     className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
-                    value={setCurrency}
+                    value={selectedCurrency} // Changed to selectedCurrency
                     onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
-                    disabled={currencyDisabel}
+                    disabled={currencyDisable} // Fixed typo here
                 >
-
-                    {currencyOptions.map((currecy) => (
-                        <option value="usd" key={currecy}>
-                            ${currecy}
+                    {currencyOptions.map((currency) => (
+                        <option key={currency} value={currency}>
+                            ${currency}
                         </option>
                     ))}
-
                 </select>
             </div>
         </div>
