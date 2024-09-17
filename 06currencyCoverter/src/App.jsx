@@ -49,8 +49,8 @@ function App() {
                 amount={amonut}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setFrom(currency)} // Fix this part
-                selectCurrency={from} // Keep this to reflect the "from" currency
-                onAmountChange={(amount) => setAmount(amount)}
+                selectedCurrency={from} // Keep this to reflect the "from" currency
+                onAmountChange={(amount) => setAmount(amount === 0 ? 0 : amount.toString().replace(/^0+/, ''))}
               />
             </div>
 
@@ -71,7 +71,7 @@ function App() {
                 amount={covertedAmount}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setTo(currency)} // Fix this part
-                selectCurrency={to} // Fix this to reflect the "to" currency
+                selectedCurrency={to} // Fix this to reflect the "to" currency
                 amountDisable
               />
             </div>
