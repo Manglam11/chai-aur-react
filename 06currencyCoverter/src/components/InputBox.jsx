@@ -6,7 +6,7 @@ function InputBox({
     onAmountChange,
     onCurrencyChange,
     currencyOptions = [],
-    selectedCurrency = 'usd', // Changed name from setCurrency to selectedCurrency
+    selectedCurrency = "usd", // Changed name from setCurrency to selectedCurrency
     amountDisable = false,
     currencyDisable = false, // Fixed typo here
     className = "",
@@ -37,11 +37,14 @@ function InputBox({
                     onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
                     disabled={currencyDisable} // Fixed typo here
                 >
-                    {currencyOptions.map((currency) => (
-                        <option key={currency} value={currency}>
-                            ${currency}
-                        </option>
-                    ))}
+                    {currencyOptions.length === 0 ? (
+                        <option disabled>No currencies availbale</option>
+                    ) :
+                        currencyOptions.map((currency) => (
+                            <option key={currency} value={currency}>
+                                {currency}
+                            </option>
+                        ))}
                 </select>
             </div>
         </div>

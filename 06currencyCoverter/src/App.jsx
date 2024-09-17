@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import InputBox from './components/InputBox';
 import useCurrencyInfo from './hooks/useCurrencyInfo';
 
@@ -10,17 +10,20 @@ function App() {
   const currencyInfo = useCurrencyInfo(from); // conversion happens
 
   // Remove the '$' sign from the keys
-  const options = Object.keys(currencyInfo).map(key => key.replace(/^\$/, ""));
-
+  // const options = Object.keys(currencyInfo).map(key => key.replace(/^\$/, ""));
+  const options = useMemo(() => Object.keys(currencyInfo), [currencyInfo])
   const swap = () => {
-    setFrom(to);
-    setTo(from);
+    setFrom(prev => to);
+    setTo(prev => from);
     setCovertedAmount(amonut);
-    setAmount(covertedAmount);
+    setAmount(prev => covertedAmount);
   };
 
   // Conversion calculated here
   const convert = () => {
+    if (!currencyInfo[to]) {
+      return;
+    }
     setCovertedAmount(amonut * currencyInfo[to]);
   };
 
